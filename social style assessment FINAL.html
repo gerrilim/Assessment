@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behavioral Style Compass — Self Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface-2: #EFF6F4;
+    --surface-selected: #DCEFEA;
+    --teal: #0E6E63;
+    --teal-light: #4FA69A;
+    --green: #1B7A4A;
+    --green-light: #2FA37E;
+    --driver: #1B7A4A;
+    --expressive: #2FA37E;
+    --amiable: #4FA69A;
+    --analytical: #0E6E63;
+    --ink-text: #16241F;
+    --muted: #6E7B75;
+    --muted-dark: #5C6B65;
+    --alert: #B3403A;
+    --display: 'Fraunces', serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(14,110,99,0.06), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(27,122,74,0.06), transparent 40%);
+    color: var(--ink-text);
+    font-family: var(--body);
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+  }
+
+  .wrap{ max-width: 780px; margin: 0 auto; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--teal);
+    display:inline-block;
+  }
+
+  h1{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.08;
+    margin: 0 0 14px;
+    color: var(--ink-text);
+  }
+
+  .lede{
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4A554F;
+    max-width: 58ch;
+    margin: 0 0 30px;
+  }
+
+  .card{
+    background: var(--surface);
+    color: var(--ink-text);
+    border-radius: 6px;
+    border: 1px solid #E1EBE8;
+    padding: 36px;
+    box-shadow: 0 24px 50px -28px rgba(14,110,99,0.25);
+  }
+
+  /* ---------- INTRO ---------- */
+  .compass-mini{ display:block; margin: 0 auto 8px; }
+
+  .quad-legend{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 22px 0 28px;
+  }
+  .quad-tag{
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    border-left: 3px solid var(--muted);
+    color: var(--ink-text);
+  }
+  .quad-tag b{ display:block; font-family: var(--body); font-size: 13px; margin-bottom: 2px; }
+  .quad-tag.driver{ border-color: var(--driver); }
+  .quad-tag.expressive{ border-color: var(--expressive); }
+  .quad-tag.amiable{ border-color: var(--amiable); }
+  .quad-tag.analytical{ border-color: var(--analytical); }
+
+  .instructions{
+    font-size: 14px;
+    line-height: 1.55;
+    color: #4A554F;
+    border-top: 1px solid rgba(14,110,99,0.14);
+    padding-top: 18px;
+    margin: 4px 0 0;
+  }
+
+  .info-fields{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .field label{
+    display:block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .field input{
+    width: 100%;
+    font-family: var(--body);
+    font-size: 14.5px;
+    padding: 11px 12px;
+    border: 1.5px solid rgba(14,110,99,0.2);
+    border-radius: 4px;
+    background: var(--surface-2);
+    color: var(--ink-text);
+  }
+  .field input:focus-visible{ outline: 3px solid var(--teal-light); outline-offset: 1px; }
+  .field-error{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--alert);
+    margin-top: 10px;
+    min-height: 14px;
+  }
+  @media (max-width: 560px){
+    .info-fields{ grid-template-columns: 1fr; }
+  }
+
+  button{
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 26px;
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+  button:focus-visible{ outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .btn-primary{
+    background: var(--teal);
+    color: #FFFFFF;
+  }
+  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px -10px rgba(14,110,99,0.5); }
+  .btn-primary:disabled{ opacity: .35; cursor: not-allowed; transform:none; box-shadow:none; }
+  .btn-ghost{
+    background: transparent;
+    color: var(--muted);
+    padding: 14px 18px;
+    text-decoration: underline;
+  }
+
+  .cta-row{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 6px;}
+
+  /* ---------- QUIZ ---------- */
+  .screen{ display:none; }
+  .screen.active{ display:block; }
+
+  .progress-dial{
+    display:flex; align-items:center; gap: 14px;
+    margin-bottom: 26px;
+  }
+  .progress-track{
+    flex: 1;
+    height: 3px;
+    background: rgba(28,35,51,0.12);
+    position: relative;
+    border-radius: 2px;
+  }
+  .progress-fill{
+    position:absolute; top:0; left:0; height:100%;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width .3s ease;
+  }
+  .progress-label{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .axis-tag{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .prompt{
+    font-family: var(--display);
+    font-size: 22px;
+    line-height: 1.35;
+    margin: 0 0 26px;
+    color: var(--ink-text);
+    min-height: 30px;
+  }
+
+  .choice-scale{
+    margin-bottom: 8px;
+  }
+  .bipolar-row{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+  }
+  .anchor{
+    flex: 1;
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: var(--ink-text);
+  }
+  .anchor-left{ text-align: right; }
+  .anchor-right{ text-align: left; }
+  .scale-track{
+    display:flex;
+    align-items:flex-start;
+    gap: 18px;
+    flex: 0 0 auto;
+  }
+  .pill-col{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .scale-pill{
+    width: 22px; height:22px; border-radius:50%;
+    border: 2px solid var(--muted);
+    background: var(--surface-2);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color .12s ease, background .12s ease, transform .12s ease;
+  }
+  .scale-pill:hover{ border-color: var(--teal-light); transform: scale(1.08); }
+  .scale-pill.selected{
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+  .pill-label{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .04em;
+    color: var(--muted);
+    white-space: nowrap;
+    height: 12px;
+  }
+  .pill-tick{
+    width: 2px;
+    height: 12px;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 620px){
+    .bipolar-row{ flex-direction: column; gap: 14px; }
+    .anchor-left, .anchor-right{ text-align:center; }
+    .scale-track{ gap: 12px; }
+  }
+
+  .nav-row{
+    display:flex; justify-content: space-between; align-items:center; margin-top: 22px;
+  }
+
+  /* ---------- RESULTS ---------- */
+  .result-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap: 18px; flex-wrap:wrap;
+    margin-bottom: 22px;
+  }
+  .style-name{
+    font-family: var(--display);
+    font-size: 34px;
+    font-weight: 700;
+    margin: 4px 0 6px;
+  }
+  .style-desc{ font-size: 14.5px; line-height:1.6; color:#3E4A45; max-width: 46ch; }
+
+  .compass-wrap{ display:flex; justify-content:center; margin: 8px 0 26px; }
+
+  .readouts{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-bottom: 26px;
+  }
+  .readout{
+    background: var(--surface-2);
+    border-radius: 5px;
+    padding: 16px 18px;
+  }
+  .readout .label{ font-family: var(--mono); font-size: 11px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted); margin-bottom: 6px;}
+  .readout .value{ font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--ink-text); }
+  .readout .sub{ font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+  .versatility-note{
+    font-size: 13.5px; line-height:1.6; color:#3E4A45;
+    background: var(--surface-2);
+    border-left: 3px solid var(--teal);
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin-bottom: 26px;
+  }
+
+  .foot-actions{ display:flex; gap: 14px; flex-wrap:wrap; }
+  .send-note{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  @media (max-width: 560px){
+    .card{ padding: 24px 20px; }
+    .readouts{ grid-template-columns: 1fr; }
+    .quad-legend{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ INTRO SCREEN ============ -->
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Self-Report Instrument · 24 Items · ~7 Minutes</div>
+    <h1>Working Style Self-Assessment</h1>
+    <p class="lede">A short self-assessment about your day-to-day working style. There are no right or wrong answers — respond with whatever feels most natural to you, rather than what you think looks best.</p>
+
+    <div class="card">
+      <p class="instructions" style="border-top:none; padding-top:0; margin-top:0;">This assessment is confidential. Only Talent Incubator will have access to individual responses. Information is collected to produce a group-level report; individual responses are masked and not shared beyond Talent Incubator.</p>
+
+      <p class="instructions">Please enter your name and email below so your results can be sent to you and to the facilitator, then begin the assessment.</p>
+
+      <div class="info-fields">
+        <div class="field">
+          <label for="resp-name">Your name</label>
+          <input type="text" id="resp-name" placeholder="Jane Tan" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="resp-email">Your email</label>
+          <input type="email" id="resp-email" placeholder="jane@company.com" autocomplete="email">
+        </div>
+      </div>
+      <div class="field-error" id="field-error"></div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn-primary" onclick="startQuiz()">Begin assessment →</button>
+      <span style="font-family:var(--mono); font-size:12px; color:var(--muted);">Your name, results, and a chart image will be sent to geraldine.lim@talentincubator.net.</span>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ SCREEN ============ -->
+  <div class="screen" id="screen-quiz">
+    <div class="eyebrow" id="quiz-eyebrow">Item</div>
+    <div class="card">
+      <div class="progress-dial">
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-label" id="progress-label">1 / 24</div>
+      </div>
+      <p class="prompt" id="prompt-text">—</p>
+      <div class="choice-scale" id="choice-scale"></div>
+      <div class="nav-row">
+        <button class="btn-ghost" id="back-btn" onclick="prevItem()">← Back</button>
+        <button class="btn-primary" id="next-btn" onclick="nextItem()" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS SCREEN ============ -->
+  <div class="screen" id="screen-results">
+    <div class="eyebrow">Result</div>
+    <div class="card">
+      <div class="result-head">
+        <div>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;" id="result-for">Primary Style</div>
+          <div class="style-name" id="result-style">—</div>
+          <p class="style-desc" id="result-desc">—</p>
+        </div>
+      </div>
+
+      <div class="compass-wrap">
+        <svg id="result-compass" width="260" height="260" viewBox="0 0 260 260"></svg>
+      </div>
+
+      <div class="readouts">
+        <div class="readout">
+          <div class="label">Assertiveness</div>
+          <div class="value" id="assert-value">50</div>
+          <div class="sub" id="assert-sub">Ask ←→ Tell</div>
+        </div>
+        <div class="readout">
+          <div class="label">Responsiveness</div>
+          <div class="value" id="respon-value">50</div>
+          <div class="sub" id="respon-sub">Control ←→ Emote</div>
+        </div>
+      </div>
+
+      <div class="versatility-note" id="versatility-note">—</div>
+
+      <div class="foot-actions">
+        <button class="btn-primary" onclick="downloadAndEmail()">Download my chart & email results</button>
+        <button class="btn-ghost" onclick="restart()">Retake assessment</button>
+        <button class="btn-ghost" onclick="window.print()">Print / save result</button>
+      </div>
+      <div class="send-note" id="send-note">This downloads an image of your quadrant position, then opens an email to geraldine.lim@talentincubator.net with your results — please attach the downloaded image before hitting send. You'll be cc'd on the email too.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ---------------- ITEM BANK ----------------
+   Each item is a forced-choice pair on one axis.
+   sideA = low pole (Ask / Control), sideB = high pole (Tell / Emote).
+   Response scale: -2 (strong A) -1 (lean A) +1 (lean B) +2 (strong B)
+------------------------------------------------ */
+const ASSERT_ITEMS = [
+  ["I ask before I state my view.", "I state my view, then invite reactions."],
+  ["I let the conversation unfold first.", "I jump straight to a recommendation."],
+  ["I gather more input before deciding.", "I decide quickly and adjust later."],
+  ["My tone in meetings is exploratory.", "My tone in meetings is direct."],
+  ["I let others take the lead.", "I naturally take the lead."],
+  ["I phrase opinions as questions.", "I phrase opinions as statements."],
+  ["I build consensus slowly.", "I push for a fast decision."],
+  ["I speak at a measured pace.", "I speak with high energy and pace."],
+  ["I raise disagreement gently.", "I state disagreement plainly."],
+  ["I drop a point if pushed back.", "I keep pressing until it's addressed."],
+  ["I focus more on listening.", "I focus more on persuading."],
+  ["I like plans to stay flexible.", "I like to lock in a plan."]
+];
+
+const RESPON_ITEMS = [
+  ["I keep feelings to myself at work.", "I show feelings openly at work."],
+  ["I stick to facts over stories.", "I mix in stories and feelings."],
+  ["I keep interactions efficient and businesslike.", "I build rapport before business."],
+  ["My expressions stay fairly reserved.", "My expressions are animated and visible."],
+  ["I decide mainly on logic and data.", "I decide on logic and feelings."],
+  ["I keep meetings strictly on-agenda.", "I allow some small talk in meetings."],
+  ["I'm formal in how I communicate.", "I'm informal and spontaneous."],
+  ["I prefer precise written communication.", "I prefer casual conversation."],
+  ["I rarely show excitement or frustration.", "I show excitement or frustration visibly."],
+  ["I value being objective and even-keeled.", "I value being warm and expressive."],
+  ["I keep some distance from colleagues.", "I get emotionally close with colleagues."],
+  ["I plan carefully, dislike spontaneity.", "I welcome spontaneity, even if disruptive."]
+];
+
+// Interleave the two axes so the pattern isn't obvious to the respondent
+const ITEMS = [];
+for (let i = 0; i < 12; i++) {
+  ITEMS.push({ axis: "assert", a: ASSERT_ITEMS[i][0], b: ASSERT_ITEMS[i][1] });
+  ITEMS.push({ axis: "respon", a: RESPON_ITEMS[i][0], b: RESPON_ITEMS[i][1] });
+}
+
+// Position values along the horizontal scale, left(-2) to right(+2), no neutral midpoint
+const SCALE_POSITIONS = [-2, -1, 1, 2];
+
+const FACILITATOR_EMAIL = "geraldine.lim@talentincubator.net";
+
+let current = 0;
+let answers = new Array(ITEMS.length).fill(null);
+// Per-item coin flip deciding which statement (a/b) renders on the left this session —
+// this is what prevents "always click the first/left option" from skewing every result
+// toward the same pole. Regenerated each time the quiz starts.
+let itemFlip = new Array(ITEMS.length).fill(false);
+let respondentName = "";
+let respondentEmail = "";
+let lastResult = null;
+
+function svgToPngDataUrl(svgEl, callback){
+  const serializer = new XMLSerializer();
+  let svgString = serializer.serializeToString(svgEl);
+  // Inline the CSS custom properties as literal colors so the exported PNG renders correctly
+  const rootStyles = getComputedStyle(document.documentElement);
+  ['--analytical','--driver','--amiable','--expressive','--muted','--ink-text'].forEach(varName => {
+    const val = rootStyles.getPropertyValue(varName).trim();
+    svgString = svgString.split(`var(${varName})`).join(val);
+  });
+  const svgBlob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+  img.onload = function(){
+    const canvas = document.createElement('canvas');
+    const scale = 2; // sharper export
+    canvas.width = svgEl.viewBox.baseVal.width * scale;
+    canvas.height = svgEl.viewBox.baseVal.height * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(scale, scale);
+    ctx.drawImage(img, 0, 0);
+    URL.revokeObjectURL(url);
+    callback(canvas.toDataURL('image/png'));
+  };
+  img.src = url;
+}
+
+function downloadAndEmail(){
+  if (!lastResult) return;
+  const svgEl = document.getElementById('result-compass');
+  svgToPngDataUrl(svgEl, function(pngDataUrl){
+    const fileName = `${respondentName.replace(/\s+/g, '-') || 'results'}-quadrant.png`;
+    const link = document.createElement('a');
+    link.href = pngDataUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    const { assertScore, responScore, styleName, styleDesc } = lastResult;
+    const subject = `Behavioral Style Compass results — ${respondentName}`;
+    const body =
+`Name: ${respondentName}
+Email: ${respondentEmail}
+
+Primary style: ${styleName}
+Assertiveness score: ${assertScore}/100 (${assertScore >= 50 ? 'Tell-leaning' : 'Ask-leaning'})
+Responsiveness score: ${responScore}/100 (${responScore >= 50 ? 'Emote-leaning' : 'Control-leaning'})
+
+${styleDesc}
+
+(A quadrant chart image "${fileName}" was just downloaded to this device — please attach it to this email before sending.)
+`;
+    const mailto = `mailto:${FACILITATOR_EMAIL}?cc=${encodeURIComponent(respondentEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setTimeout(function(){ window.location.href = mailto; }, 400);
+  });
+}
+
+function startQuiz(){
+  const nameInput = document.getElementById('resp-name');
+  const emailInput = document.getElementById('resp-email');
+  const errorBox = document.getElementById('field-error');
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name || !email){
+    errorBox.textContent = "Please enter your name and email to continue.";
+    return;
+  }
+  if (!emailPattern.test(email)){
+    errorBox.textContent = "Please enter a valid email address.";
+    return;
+  }
+  errorBox.textContent = "";
+  respondentName = name;
+  respondentEmail = email;
+  itemFlip = ITEMS.map(() => Math.random() < 0.5);
+  answers = new Array(ITEMS.length).fill(null);
+  current = 0;
+
+  switchScreen('screen-quiz');
+  renderItem();
+}
+
+function switchScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderItem(){
+  const item = ITEMS[current];
+  const flipped = itemFlip[current];
+  const leftText = flipped ? item.b : item.a;
+  const rightText = flipped ? item.a : item.b;
+
+  document.getElementById('quiz-eyebrow').textContent = `Item ${current+1} of ${ITEMS.length}`;
+  // Axis name intentionally not shown to respondents, to keep the item blind.
+  document.getElementById('progress-label').textContent = `${current+1} / ${ITEMS.length}`;
+  document.getElementById('progress-fill').style.width = `${((current)/ITEMS.length)*100}%`;
+  document.getElementById('prompt-text').textContent = "Which is more like you?";
+
+  const scale = document.getElementById('choice-scale');
+  scale.innerHTML = '';
+
+  const row = document.createElement('div');
+  row.className = 'bipolar-row';
+
+  const leftAnchor = document.createElement('div');
+  leftAnchor.className = 'anchor anchor-left';
+  leftAnchor.textContent = leftText;
+
+  const track = document.createElement('div');
+  track.className = 'scale-track';
+
+  const pillLabels = { '-2': 'Strongly', '-1': null, '1': null, '2': 'Strongly' };
+  const tickColors = { '-1': 'var(--muted)', '1': 'var(--muted)' };
+  SCALE_POSITIONS.forEach(pos => {
+    const col = document.createElement('div');
+    col.className = 'pill-col';
+    const pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'scale-pill' + (answers[current] === pos ? ' selected' : '');
+    pill.setAttribute('aria-label', pos < 0 ? (pos === -2 ? 'Strongly left' : 'Somewhat left') : (pos === 2 ? 'Strongly right' : 'Somewhat right'));
+    pill.onclick = () => selectChoice(pos);
+    col.appendChild(pill);
+    if (pillLabels[pos]) {
+      const label = document.createElement('div');
+      label.className = 'pill-label';
+      label.textContent = pillLabels[pos];
+      col.appendChild(label);
+    } else {
+      const tick = document.createElement('div');
+      tick.className = 'pill-tick';
+      tick.style.background = tickColors[pos];
+      col.appendChild(tick);
+    }
+    track.appendChild(col);
+  });
+
+  const rightAnchor = document.createElement('div');
+  rightAnchor.className = 'anchor anchor-right';
+  rightAnchor.textContent = rightText;
+
+  row.appendChild(leftAnchor);
+  row.appendChild(track);
+  row.appendChild(rightAnchor);
+  scale.appendChild(row);
+
+  document.getElementById('back-btn').style.visibility = current === 0 ? 'hidden' : 'visible';
+  document.getElementById('next-btn').disabled = answers[current] === null;
+  document.getElementById('next-btn').textContent = current === ITEMS.length - 1 ? 'See results →' : 'Next →';
+}
+
+function selectChoice(val){
+  answers[current] = val;
+  renderItem();
+}
+
+function nextItem(){
+  if (answers[current] === null) return;
+  if (current < ITEMS.length - 1){
+    current++;
+    renderItem();
+  } else {
+    showResults();
+  }
+}
+
+function prevItem(){
+  if (current > 0){
+    current--;
+    renderItem();
+  }
+}
+
+function restart(){
+  current = 0;
+  answers = new Array(ITEMS.length).fill(null);
+  itemFlip = new Array(ITEMS.length).fill(false);
+  switchScreen('screen-intro');
+}
+
+const STYLES = {
+  driver: {
+    name: "Driver",
+    color: "var(--driver)",
+    hex: "#1B7A4A",
+    desc: "You lean toward stating positions directly and moving fast toward decisions, while keeping emotion and small talk in the background. Efficiency and results tend to matter more to you than process."
+  },
+  expressive: {
+    name: "Expressive",
+    color: "var(--expressive)",
+    hex: "#2FA37E",
+    desc: "You lean toward asserting your views energetically and showing your reactions openly. You tend to bring enthusiasm and personal color into conversations, and you're comfortable driving a room."
+  },
+  amiable: {
+    name: "Amiable",
+    color: "var(--amiable)",
+    hex: "#4FA69A",
+    desc: "You lean toward asking rather than telling, and toward showing warmth openly. Relationships and consensus tend to matter to you as much as the task itself."
+  },
+  analytical: {
+    name: "Analytical",
+    color: "var(--analytical)",
+    hex: "#0E6E63",
+    desc: "You lean toward asking rather than telling, and toward keeping emotion measured. You tend to favor data, precision, and careful consideration before committing to a position."
+  }
+};
+
+function showResults(){
+  let assertSum = 0, responSum = 0;
+  ITEMS.forEach((item, i) => {
+    // answers[i] is the raw left-to-right click position (-2..+2). If this item's
+    // statements were flipped (b shown on the left), invert it back so positive
+    // always means "toward Tell" or "toward Emote" regardless of display order.
+    const trueValue = itemFlip[i] ? -answers[i] : answers[i];
+    if (item.axis === 'assert') assertSum += trueValue;
+    else responSum += trueValue;
+  });
+  // each axis: 12 items, range -24..+24 -> normalize to 0..100
+  const assertScore = Math.round(((assertSum + 24) / 48) * 100);
+  const responScore = Math.round(((responSum + 24) / 48) * 100);
+
+  let styleKey;
+  if (assertScore >= 50 && responScore < 50) styleKey = 'driver';
+  else if (assertScore >= 50 && responScore >= 50) styleKey = 'expressive';
+  else if (assertScore < 50 && responScore >= 50) styleKey = 'amiable';
+  else styleKey = 'analytical';
+
+  const style = STYLES[styleKey];
+  document.getElementById('result-for').textContent = `Primary Style · ${respondentName}`;
+  document.getElementById('result-style').textContent = style.name;
+  document.getElementById('result-style').style.color = style.color;
+  document.getElementById('result-desc').textContent = style.desc;
+
+  lastResult = { assertScore, responScore, styleName: style.name, styleDesc: style.desc };
+
+  document.getElementById('assert-value').textContent = assertScore;
+  document.getElementById('respon-value').textContent = responScore;
+  document.getElementById('assert-sub').textContent = assertScore >= 50 ? `Tell-leaning (+${assertScore - 50})` : `Ask-leaning (${assertScore - 50})`;
+  document.getElementById('respon-sub').textContent = responScore >= 50 ? `Emote-leaning (+${responScore - 50})` : `Control-leaning (${responScore - 50})`;
+
+  const distFromCenter = Math.round(Math.sqrt(Math.pow(assertScore-50,2) + Math.pow(responScore-50,2)));
+  let versText;
+  if (distFromCenter < 15){
+    versText = "Your scores sit close to the center on both axes. This usually reads as high behavioral flexibility — you shift comfortably between styles depending on who you're with, rather than showing one strong, consistent pull.";
+  } else if (distFromCenter < 30){
+    versText = "Your scores show a moderate pull toward one quadrant. You likely have a clear default style under normal conditions, but can flex when a situation calls for it.";
+  } else {
+    versText = "Your scores show a strong, consistent pull toward one quadrant. This is likely your default under pressure or with people you don't know well — worth noting where it helps you and where it might need deliberate adjustment.";
+  }
+  document.getElementById('versatility-note').textContent = versText;
+
+  drawCompass(assertScore, responScore, style.hex);
+  switchScreen('screen-results');
+}
+
+function drawCompass(assertScore, responScore, dotColor){
+  const svg = document.getElementById('result-compass');
+  const size = 260, pad = 20, plotSize = size - pad*2;
+  const cx = pad + (assertScore/100) * plotSize;
+  const cy = pad + (responScore/100) * plotSize; // Control (low score) at top, Emote (high score) at bottom
+
+  svg.innerHTML = `
+    <rect x="${pad}" y="${pad}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--analytical)" opacity="0.15"/>
+    <rect x="${pad+plotSize/2}" y="${pad}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--driver)" opacity="0.15"/>
+    <rect x="${pad}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--amiable)" opacity="0.15"/>
+    <rect x="${pad+plotSize/2}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--expressive)" opacity="0.15"/>
+    <line x1="${pad}" y1="${pad+plotSize/2}" x2="${size-pad}" y2="${pad+plotSize/2}" stroke="var(--muted)" stroke-width="1"/>
+    <line x1="${pad+plotSize/2}" y1="${pad}" x2="${pad+plotSize/2}" y2="${size-pad}" stroke="var(--muted)" stroke-width="1"/>
+    <text x="${pad+4}" y="${pad+plotSize/2-8}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">ASK</text>
+    <text x="${size-pad-30}" y="${pad+plotSize/2-8}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">TELL</text>
+    <text x="${pad+plotSize/2+6}" y="${pad+12}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">CONTROL</text>
+    <text x="${pad+plotSize/2+6}" y="${size-pad-4}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">EMOTE</text>
+    <circle cx="${cx}" cy="${cy}" r="7" fill="${dotColor}" stroke="var(--ink-text)" stroke-width="1.5"/>
+  `;
+}
+</script>
+</body>
+</html>
