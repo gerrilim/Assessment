@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Behavioral Style Compass — Self Assessment</title>
+<title>Social Style Self-Assessment</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -21,8 +21,8 @@
     --amiable: #4FA69A;
     --analytical: #0E6E63;
     --ink-text: #16241F;
-    --muted: #6E7B75;
-    --muted-dark: #5C6B65;
+    --muted: #4A5852;
+    --muted-dark: #3A4742;
     --alert: #B3403A;
     --display: 'Fraunces', serif;
     --body: 'IBM Plex Sans', sans-serif;
@@ -72,14 +72,6 @@
     color: var(--ink-text);
   }
 
-  .lede{
-    font-size: 16px;
-    line-height: 1.6;
-    color: #4A554F;
-    max-width: 58ch;
-    margin: 0 0 30px;
-  }
-
   .card{
     background: var(--surface);
     color: var(--ink-text);
@@ -90,36 +82,14 @@
   }
 
   /* ---------- INTRO ---------- */
-  .compass-mini{ display:block; margin: 0 auto 8px; }
-
-  .quad-legend{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 22px 0 28px;
-  }
-  .quad-tag{
-    font-family: var(--mono);
-    font-size: 12px;
-    padding: 10px 12px;
-    border-radius: 4px;
-    background: var(--surface-2);
-    border-left: 3px solid var(--muted);
-    color: var(--ink-text);
-  }
-  .quad-tag b{ display:block; font-family: var(--body); font-size: 13px; margin-bottom: 2px; }
-  .quad-tag.driver{ border-color: var(--driver); }
-  .quad-tag.expressive{ border-color: var(--expressive); }
-  .quad-tag.amiable{ border-color: var(--amiable); }
-  .quad-tag.analytical{ border-color: var(--analytical); }
-
   .instructions{
-    font-size: 14px;
-    line-height: 1.55;
-    color: #4A554F;
-    border-top: 1px solid rgba(14,110,99,0.14);
-    padding-top: 18px;
-    margin: 4px 0 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #3E4A45;
+    margin: 0 0 18px;
+  }
+  .instructions strong {
+    color: var(--ink-text);
   }
 
   .info-fields{
@@ -183,7 +153,7 @@
     text-decoration: underline;
   }
 
-  .cta-row{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 6px;}
+  .cta-row{ display:flex; align-items:center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 24px;}
 
   /* ---------- QUIZ ---------- */
   .screen{ display:none; }
@@ -211,15 +181,6 @@
     font-size: 12px;
     color: var(--muted);
     white-space: nowrap;
-  }
-
-  .axis-tag{
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
   }
 
   .prompt{
@@ -311,40 +272,27 @@
 
   .compass-wrap{ display:flex; justify-content:center; margin: 8px 0 26px; }
 
-  .readouts{
-    display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    margin-bottom: 26px;
-  }
-  .readout{
-    background: var(--surface-2);
-    border-radius: 5px;
-    padding: 16px 18px;
-  }
-  .readout .label{ font-family: var(--mono); font-size: 11px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted); margin-bottom: 6px;}
-  .readout .value{ font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--ink-text); }
-  .readout .sub{ font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-
   .versatility-note{
-    font-size: 13.5px; line-height:1.6; color:#3E4A45;
+    font-size: 14px; line-height:1.6; color:#3E4A45;
     background: var(--surface-2);
     border-left: 3px solid var(--teal);
-    padding: 14px 16px;
+    padding: 16px 18px;
     border-radius: 4px;
     margin-bottom: 26px;
   }
 
-  .foot-actions{ display:flex; gap: 14px; flex-wrap:wrap; }
+  .foot-actions{ display:flex; gap: 14px; flex-wrap:wrap; align-items: center; }
   .send-note{
     font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--muted);
-    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted-dark);
+    margin-top: 12px;
+    line-height: 1.5;
+    font-weight: 500;
   }
 
   @media (max-width: 560px){
     .card{ padding: 24px 20px; }
-    .readouts{ grid-template-columns: 1fr; }
-    .quad-legend{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -354,13 +302,16 @@
   <!-- ============ INTRO SCREEN ============ -->
   <div class="screen active" id="screen-intro">
     <div class="eyebrow">Self-Report Instrument · 24 Items · ~7 Minutes</div>
-    <h1>Working Style Self-Assessment</h1>
-    <p class="lede">A short self-assessment about your day-to-day working style. There are no right or wrong answers — respond with whatever feels most natural to you, rather than what you think looks best.</p>
+    <h1>Social Style Self-Assessment</h1>
 
     <div class="card">
-      <p class="instructions" style="border-top:none; padding-top:0; margin-top:0;">This assessment is confidential. Only Talent Incubator will have access to individual responses. Information is collected to produce a group-level report; individual responses are masked and not shared beyond Talent Incubator.</p>
+      <p class="instructions">This assessment is based on the Social Styles, which is a model for understanding people’s behavioural styles. Everyone has natural behaviours and preferred communication styles. The purpose of this self-assessment is to help you identify your personal style preferences and learn how to adapt your style to improve interpersonal relationships.</p>
+      
+      <p class="instructions"><strong>Confidentiality</strong><br>Your results will be confidential, only Talent Incubator will have access to individual responses which will not be shared. Responses will be aggregated for a group-level report.</p>
+      
+      <p class="instructions"><strong>Instructions</strong><br>Answer all 24 questions using the scale: Mostly Left | Slightly Left | Slightly Right | Mostly Right.<br>There are no right or wrong answers – respond based on what you do, rather than what should be.</p>
 
-      <p class="instructions">Please enter your name and email below so your results can be sent to you and to the facilitator, then begin the assessment.</p>
+      <p class="instructions" style="margin-bottom: 0;">Please provide your name and email so that the results can be submitted and also sent to you.</p>
 
       <div class="info-fields">
         <div class="field">
@@ -377,7 +328,7 @@
 
     <div class="cta-row">
       <button class="btn-primary" onclick="startQuiz()">Begin assessment →</button>
-      <span style="font-family:var(--mono); font-size:12px; color:var(--muted);">Your name, results, and a chart image will be sent to geraldine.lim@talentincubator.net.</span>
+      <span style="font-family:var(--mono); font-size:12px; color:var(--muted); font-weight:500;">Your results will be sent to geraldine.lim@talentincubator.net.</span>
     </div>
   </div>
 
@@ -401,7 +352,7 @@
   <!-- ============ RESULTS SCREEN ============ -->
   <div class="screen" id="screen-results">
     <div class="eyebrow">Result</div>
-    <div class="card">
+    <div class="card" id="export-card">
       <div class="result-head">
         <div>
           <div style="font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;" id="result-for">Primary Style</div>
@@ -411,126 +362,76 @@
       </div>
 
       <div class="compass-wrap">
-        <svg id="result-compass" width="260" height="260" viewBox="0 0 260 260"></svg>
-      </div>
-
-      <div class="readouts">
-        <div class="readout">
-          <div class="label">Assertiveness</div>
-          <div class="value" id="assert-value">50</div>
-          <div class="sub" id="assert-sub">Ask ←→ Tell</div>
-        </div>
-        <div class="readout">
-          <div class="label">Responsiveness</div>
-          <div class="value" id="respon-value">50</div>
-          <div class="sub" id="respon-sub">Control ←→ Emote</div>
-        </div>
+        <svg id="result-compass" width="340" height="340" viewBox="0 0 340 340"></svg>
       </div>
 
       <div class="versatility-note" id="versatility-note">—</div>
+    </div>
 
+    <div style="margin-top: 24px;">
       <div class="foot-actions">
-        <button class="btn-primary" onclick="downloadAndEmail()">Download my chart & email results</button>
+        <button class="btn-primary" onclick="downloadAndEmail()">Download chart & email results</button>
         <button class="btn-ghost" onclick="restart()">Retake assessment</button>
         <button class="btn-ghost" onclick="window.print()">Print / save result</button>
       </div>
-      <div class="send-note" id="send-note">This downloads an image of your quadrant position, then opens an email to geraldine.lim@talentincubator.net with your results — please attach the downloaded image before hitting send. You'll be cc'd on the email too.</div>
+      <div class="send-note" id="send-note">
+        1. Click <b>Download chart & email results</b> — this saves your results image and opens your email client.<br>
+        2. Please attach the downloaded image to the email before sending.<br>
+        3. The email body is pre-formatted with your Name, Email, and Primary Social Style for easy copy-pasting. You'll be CC'd too.
+      </div>
     </div>
   </div>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-/* ---------------- ITEM BANK ----------------
-   Each item is a forced-choice pair on one axis.
-   sideA = low pole (Ask / Control), sideB = high pole (Tell / Emote).
-   Response scale: -2 (strong A) -1 (lean A) +1 (lean B) +2 (strong B)
------------------------------------------------- */
-const ASSERT_ITEMS = [
-  ["I ask before I state my view.", "I state my view, then invite reactions."],
-  ["I let the conversation unfold first.", "I jump straight to a recommendation."],
-  ["I gather more input before deciding.", "I decide quickly and adjust later."],
-  ["My tone in meetings is exploratory.", "My tone in meetings is direct."],
-  ["I let others take the lead.", "I naturally take the lead."],
-  ["I phrase opinions as questions.", "I phrase opinions as statements."],
-  ["I build consensus slowly.", "I push for a fast decision."],
-  ["I speak at a measured pace.", "I speak with high energy and pace."],
-  ["I raise disagreement gently.", "I state disagreement plainly."],
-  ["I drop a point if pushed back.", "I keep pressing until it's addressed."],
-  ["I focus more on listening.", "I focus more on persuading."],
-  ["I like plans to stay flexible.", "I like to lock in a plan."]
+const ITEMS = [
+  { axis: "assert", a: "I ask before I state my view.", b: "I state my view, then invite reactions." },
+  { axis: "respon", a: "I keep feelings to myself at work.", b: "I show feelings openly at work." },
+  { axis: "assert", a: "I let the conversation unfold first.", b: "I jump straight to a recommendation." },
+  { axis: "respon", a: "I stick to facts over stories.", b: "I mix in stories and feelings." },
+  { axis: "assert", a: "I gather more input before deciding.", b: "I decide quickly and adjust later." },
+  { axis: "respon", a: "I keep interactions efficient and businesslike.", b: "I build rapport before business." },
+  { axis: "assert", a: "My tone in meetings is exploratory.", b: "My tone in meetings is direct." },
+  { axis: "respon", a: "My expressions stay fairly reserved.", b: "My expressions are animated and visible." },
+  { axis: "assert", a: "I let others take the lead.", b: "I naturally take the lead." },
+  { axis: "respon", a: "I decide mainly on logic and data.", b: "I decide on logic and feelings." },
+  { axis: "assert", a: "I phrase opinions as questions.", b: "I phrase opinions as statements." },
+  { axis: "respon", a: "I keep meetings strictly on-agenda.", b: "I allow some small talk in meetings." },
+  { axis: "assert", a: "I build consensus slowly.", b: "I push for a fast decision." },
+  { axis: "respon", a: "I'm formal in how I communicate.", b: "I'm informal and spontaneous." },
+  { axis: "assert", a: "I speak at a measured pace.", b: "I speak with high energy and pace." },
+  { axis: "respon", a: "I prefer precise written communication.", b: "I prefer casual conversation." },
+  { axis: "assert", a: "I raise disagreement gently.", b: "I state disagreement plainly." },
+  { axis: "respon", a: "I rarely show excitement or frustration.", b: "I show excitement or frustration visibly." },
+  { axis: "assert", a: "I drop a point if pushed back.", b: "I keep pressing until it's addressed." },
+  { axis: "respon", a: "I value being objective and even-keeled.", b: "I value being warm and expressive." },
+  { axis: "assert", a: "I focus more on listening.", b: "I focus more on persuading." },
+  { axis: "respon", a: "I keep some distance from colleagues.", b: "I get emotionally close with colleagues." },
+  { axis: "assert", a: "I like plans to stay flexible.", b: "I like to lock in a plan." },
+  { axis: "respon", a: "I plan carefully, dislike spontaneity.", b: "I welcome spontaneity, even if disruptive." }
 ];
 
-const RESPON_ITEMS = [
-  ["I keep feelings to myself at work.", "I show feelings openly at work."],
-  ["I stick to facts over stories.", "I mix in stories and feelings."],
-  ["I keep interactions efficient and businesslike.", "I build rapport before business."],
-  ["My expressions stay fairly reserved.", "My expressions are animated and visible."],
-  ["I decide mainly on logic and data.", "I decide on logic and feelings."],
-  ["I keep meetings strictly on-agenda.", "I allow some small talk in meetings."],
-  ["I'm formal in how I communicate.", "I'm informal and spontaneous."],
-  ["I prefer precise written communication.", "I prefer casual conversation."],
-  ["I rarely show excitement or frustration.", "I show excitement or frustration visibly."],
-  ["I value being objective and even-keeled.", "I value being warm and expressive."],
-  ["I keep some distance from colleagues.", "I get emotionally close with colleagues."],
-  ["I plan carefully, dislike spontaneity.", "I welcome spontaneity, even if disruptive."]
-];
-
-// Interleave the two axes so the pattern isn't obvious to the respondent
-const ITEMS = [];
-for (let i = 0; i < 12; i++) {
-  ITEMS.push({ axis: "assert", a: ASSERT_ITEMS[i][0], b: ASSERT_ITEMS[i][1] });
-  ITEMS.push({ axis: "respon", a: RESPON_ITEMS[i][0], b: RESPON_ITEMS[i][1] });
-}
-
-// Position values along the horizontal scale, left(-2) to right(+2), no neutral midpoint
 const SCALE_POSITIONS = [-2, -1, 1, 2];
-
 const FACILITATOR_EMAIL = "geraldine.lim@talentincubator.net";
 
 let current = 0;
 let answers = new Array(ITEMS.length).fill(null);
-// Per-item coin flip deciding which statement (a/b) renders on the left this session —
-// this is what prevents "always click the first/left option" from skewing every result
-// toward the same pole. Regenerated each time the quiz starts.
 let itemFlip = new Array(ITEMS.length).fill(false);
 let respondentName = "";
 let respondentEmail = "";
 let lastResult = null;
 
-function svgToPngDataUrl(svgEl, callback){
-  const serializer = new XMLSerializer();
-  let svgString = serializer.serializeToString(svgEl);
-  // Inline the CSS custom properties as literal colors so the exported PNG renders correctly
-  const rootStyles = getComputedStyle(document.documentElement);
-  ['--analytical','--driver','--amiable','--expressive','--muted','--ink-text'].forEach(varName => {
-    const val = rootStyles.getPropertyValue(varName).trim();
-    svgString = svgString.split(`var(${varName})`).join(val);
-  });
-  const svgBlob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
-  const url = URL.createObjectURL(svgBlob);
-  const img = new Image();
-  img.onload = function(){
-    const canvas = document.createElement('canvas');
-    const scale = 2; // sharper export
-    canvas.width = svgEl.viewBox.baseVal.width * scale;
-    canvas.height = svgEl.viewBox.baseVal.height * scale;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.scale(scale, scale);
-    ctx.drawImage(img, 0, 0);
-    URL.revokeObjectURL(url);
-    callback(canvas.toDataURL('image/png'));
-  };
-  img.src = url;
-}
-
 function downloadAndEmail(){
   if (!lastResult) return;
-  const svgEl = document.getElementById('result-compass');
-  svgToPngDataUrl(svgEl, function(pngDataUrl){
-    const fileName = `${respondentName.replace(/\s+/g, '-') || 'results'}-quadrant.png`;
+  const cardEl = document.getElementById('export-card');
+  
+  html2canvas(cardEl, { scale: 2, useCORS: true, backgroundColor: '#FFFFFF' }).then(canvas => {
+    const pngDataUrl = canvas.toDataURL('image/png');
+    const safeName = respondentName.replace(/\s+/g, '-') || 'results';
+    const fileName = `${safeName}-Social-Style.png`;
+    
     const link = document.createElement('a');
     link.href = pngDataUrl;
     link.download = fileName;
@@ -538,19 +439,14 @@ function downloadAndEmail(){
     link.click();
     document.body.removeChild(link);
 
-    const { assertScore, responScore, styleName, styleDesc } = lastResult;
-    const subject = `Behavioral Style Compass results — ${respondentName}`;
+    const { styleName } = lastResult;
+    const subject = `Social Style Self-Assessment Results — ${respondentName}`;
     const body =
 `Name: ${respondentName}
 Email: ${respondentEmail}
+Primary Social Style: ${styleName}
 
-Primary style: ${styleName}
-Assertiveness score: ${assertScore}/100 (${assertScore >= 50 ? 'Tell-leaning' : 'Ask-leaning'})
-Responsiveness score: ${responScore}/100 (${responScore >= 50 ? 'Emote-leaning' : 'Control-leaning'})
-
-${styleDesc}
-
-(A quadrant chart image "${fileName}" was just downloaded to this device — please attach it to this email before sending.)
+(A results image file "${fileName}" has been downloaded to your device. Please attach it to this email before sending.)
 `;
     const mailto = `mailto:${FACILITATOR_EMAIL}?cc=${encodeURIComponent(respondentEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setTimeout(function(){ window.location.href = mailto; }, 400);
@@ -597,7 +493,6 @@ function renderItem(){
   const rightText = flipped ? item.a : item.b;
 
   document.getElementById('quiz-eyebrow').textContent = `Item ${current+1} of ${ITEMS.length}`;
-  // Axis name intentionally not shown to respondents, to keep the item blind.
   document.getElementById('progress-label').textContent = `${current+1} / ${ITEMS.length}`;
   document.getElementById('progress-fill').style.width = `${((current)/ITEMS.length)*100}%`;
   document.getElementById('prompt-text').textContent = "Which is more like you?";
@@ -615,28 +510,22 @@ function renderItem(){
   const track = document.createElement('div');
   track.className = 'scale-track';
 
-  const pillLabels = { '-2': 'Strongly', '-1': null, '1': null, '2': 'Strongly' };
-  const tickColors = { '-1': 'var(--muted)', '1': 'var(--muted)' };
+  const pillLabels = { '-2': 'Mostly Left', '-1': 'Slightly Left', '1': 'Slightly Right', '2': 'Mostly Right' };
+  
   SCALE_POSITIONS.forEach(pos => {
     const col = document.createElement('div');
     col.className = 'pill-col';
     const pill = document.createElement('button');
     pill.type = 'button';
     pill.className = 'scale-pill' + (answers[current] === pos ? ' selected' : '');
-    pill.setAttribute('aria-label', pos < 0 ? (pos === -2 ? 'Strongly left' : 'Somewhat left') : (pos === 2 ? 'Strongly right' : 'Somewhat right'));
     pill.onclick = () => selectChoice(pos);
     col.appendChild(pill);
-    if (pillLabels[pos]) {
-      const label = document.createElement('div');
-      label.className = 'pill-label';
-      label.textContent = pillLabels[pos];
-      col.appendChild(label);
-    } else {
-      const tick = document.createElement('div');
-      tick.className = 'pill-tick';
-      tick.style.background = tickColors[pos];
-      col.appendChild(tick);
-    }
+    
+    const label = document.createElement('div');
+    label.className = 'pill-label';
+    label.textContent = pillLabels[pos];
+    col.appendChild(label);
+    
     track.appendChild(col);
   });
 
@@ -713,14 +602,10 @@ const STYLES = {
 function showResults(){
   let assertSum = 0, responSum = 0;
   ITEMS.forEach((item, i) => {
-    // answers[i] is the raw left-to-right click position (-2..+2). If this item's
-    // statements were flipped (b shown on the left), invert it back so positive
-    // always means "toward Tell" or "toward Emote" regardless of display order.
     const trueValue = itemFlip[i] ? -answers[i] : answers[i];
     if (item.axis === 'assert') assertSum += trueValue;
     else responSum += trueValue;
   });
-  // each axis: 12 items, range -24..+24 -> normalize to 0..100
   const assertScore = Math.round(((assertSum + 24) / 48) * 100);
   const responScore = Math.round(((responSum + 24) / 48) * 100);
 
@@ -736,12 +621,7 @@ function showResults(){
   document.getElementById('result-style').style.color = style.color;
   document.getElementById('result-desc').textContent = style.desc;
 
-  lastResult = { assertScore, responScore, styleName: style.name, styleDesc: style.desc };
-
-  document.getElementById('assert-value').textContent = assertScore;
-  document.getElementById('respon-value').textContent = responScore;
-  document.getElementById('assert-sub').textContent = assertScore >= 50 ? `Tell-leaning (+${assertScore - 50})` : `Ask-leaning (${assertScore - 50})`;
-  document.getElementById('respon-sub').textContent = responScore >= 50 ? `Emote-leaning (+${responScore - 50})` : `Control-leaning (${responScore - 50})`;
+  lastResult = { styleName: style.name };
 
   const distFromCenter = Math.round(Math.sqrt(Math.pow(assertScore-50,2) + Math.pow(responScore-50,2)));
   let versText;
@@ -760,22 +640,31 @@ function showResults(){
 
 function drawCompass(assertScore, responScore, dotColor){
   const svg = document.getElementById('result-compass');
-  const size = 260, pad = 20, plotSize = size - pad*2;
+  const size = 340, pad = 30, plotSize = size - pad*2;
   const cx = pad + (assertScore/100) * plotSize;
-  const cy = pad + (responScore/100) * plotSize; // Control (low score) at top, Emote (high score) at bottom
+  const cy = pad + (responScore/100) * plotSize;
 
   svg.innerHTML = `
     <rect x="${pad}" y="${pad}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--analytical)" opacity="0.15"/>
     <rect x="${pad+plotSize/2}" y="${pad}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--driver)" opacity="0.15"/>
     <rect x="${pad}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--amiable)" opacity="0.15"/>
     <rect x="${pad+plotSize/2}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--expressive)" opacity="0.15"/>
-    <line x1="${pad}" y1="${pad+plotSize/2}" x2="${size-pad}" y2="${pad+plotSize/2}" stroke="var(--muted)" stroke-width="1"/>
-    <line x1="${pad+plotSize/2}" y1="${pad}" x2="${pad+plotSize/2}" y2="${size-pad}" stroke="var(--muted)" stroke-width="1"/>
-    <text x="${pad+4}" y="${pad+plotSize/2-8}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">ASK</text>
-    <text x="${size-pad-30}" y="${pad+plotSize/2-8}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">TELL</text>
-    <text x="${pad+plotSize/2+6}" y="${pad+12}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">CONTROL</text>
-    <text x="${pad+plotSize/2+6}" y="${size-pad-4}" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">EMOTE</text>
-    <circle cx="${cx}" cy="${cy}" r="7" fill="${dotColor}" stroke="var(--ink-text)" stroke-width="1.5"/>
+    
+    <line x1="${pad}" y1="${pad+plotSize/2}" x2="${size-pad}" y2="${pad+plotSize/2}" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="${pad+plotSize/2}" y1="${pad}" x2="${pad+plotSize/2}" y2="${size-pad}" stroke="var(--muted)" stroke-width="1.5"/>
+    
+    <text x="${pad+8}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">ASK</text>
+    <text x="${size-pad-36}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">TELL</text>
+    <text x="${pad+plotSize/2+8}" y="${pad+16}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">CONTROL</text>
+    <text x="${pad+plotSize/2+8}" y="${size-pad-8}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">EMOTE</text>
+    
+    <!-- Quadrant Labels -->
+    <text x="${pad + plotSize/4}" y="${pad + plotSize/4}" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--analytical)" text-anchor="middle" opacity="0.85">Analytical</text>
+    <text x="${pad + (3*plotSize)/4}" y="${pad + plotSize/4}" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--driver)" text-anchor="middle" opacity="0.85">Driver</text>
+    <text x="${pad + plotSize/4}" y="${pad + (3*plotSize)/4}" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--amiable)" text-anchor="middle" opacity="0.85">Amiable</text>
+    <text x="${pad + (3*plotSize)/4}" y="${pad + (3*plotSize)/4}" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--expressive)" text-anchor="middle" opacity="0.85">Expressive</text>
+
+    <circle cx="${cx}" cy="${cy}" r="8" fill="${dotColor}" stroke="var(--ink-text)" stroke-width="2"/>
   `;
 }
 </script>
