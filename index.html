@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Social Style Self-Assessment</title>
+<title>Social Styles Self-Assessment</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,7 @@
     --analytical: #0E6E63;
     --ink-text: #16241F;
     --muted: #4A5852;
-    --muted-dark: #3A4742;
+    --muted-dark: #2B3833;
     --alert: #B3403A;
     --display: 'Fraunces', serif;
     --body: 'IBM Plex Sans', sans-serif;
@@ -104,7 +104,7 @@
     font-size: 11px;
     letter-spacing: .08em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--muted-dark);
     margin-bottom: 6px;
   }
   .field input{
@@ -148,7 +148,7 @@
   .btn-primary:disabled{ opacity: .35; cursor: not-allowed; transform:none; box-shadow:none; }
   .btn-ghost{
     background: transparent;
-    color: var(--muted);
+    color: var(--muted-dark);
     padding: 14px 18px;
     text-decoration: underline;
   }
@@ -179,7 +179,7 @@
   .progress-label{
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--muted);
+    color: var(--muted-dark);
     white-space: nowrap;
   }
 
@@ -222,7 +222,7 @@
   }
   .scale-pill{
     width: 22px; height:22px; border-radius:50%;
-    border: 2px solid var(--muted);
+    border: 2px solid var(--muted-dark);
     background: var(--surface-2);
     cursor: pointer;
     padding: 0;
@@ -237,20 +237,25 @@
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: .04em;
-    color: var(--muted);
+    color: var(--muted-dark);
     white-space: nowrap;
     height: 12px;
   }
-  .pill-tick{
-    width: 2px;
-    height: 12px;
-    border-radius: 1px;
+
+  .mobile-tip {
+    display: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    margin-bottom: 12px;
+    text-align: center;
   }
 
   @media (max-width: 620px){
     .bipolar-row{ flex-direction: column; gap: 14px; }
     .anchor-left, .anchor-right{ text-align:center; }
     .scale-track{ gap: 12px; }
+    .mobile-tip { display: block; }
   }
 
   .nav-row{
@@ -268,12 +273,12 @@
     font-weight: 700;
     margin: 4px 0 6px;
   }
-  .style-desc{ font-size: 14.5px; line-height:1.6; color:#3E4A45; max-width: 46ch; }
+  .style-desc{ font-size: 14.5px; line-height:1.6; color:#1A2621; max-width: 46ch; }
 
   .compass-wrap{ display:flex; justify-content:center; margin: 8px 0 26px; }
 
   .versatility-note{
-    font-size: 14px; line-height:1.6; color:#3E4A45;
+    font-size: 14px; line-height:1.6; color:#1A2621;
     background: var(--surface-2);
     border-left: 3px solid var(--teal);
     padding: 16px 18px;
@@ -286,8 +291,8 @@
     font-family: var(--mono);
     font-size: 12px;
     color: var(--muted-dark);
-    margin-top: 12px;
-    line-height: 1.5;
+    margin-top: 14px;
+    line-height: 1.6;
     font-weight: 500;
   }
 
@@ -302,7 +307,7 @@
   <!-- ============ INTRO SCREEN ============ -->
   <div class="screen active" id="screen-intro">
     <div class="eyebrow">Self-Report Instrument · 24 Items · ~7 Minutes</div>
-    <h1>Social Style Self-Assessment</h1>
+    <h1>Social Styles Self-Assessment</h1>
 
     <div class="card">
       <p class="instructions">This assessment is based on the Social Styles, which is a model for understanding people’s behavioural styles. Everyone has natural behaviours and preferred communication styles. The purpose of this self-assessment is to help you identify your personal style preferences and learn how to adapt your style to improve interpersonal relationships.</p>
@@ -328,7 +333,7 @@
 
     <div class="cta-row">
       <button class="btn-primary" onclick="startQuiz()">Begin assessment →</button>
-      <span style="font-family:var(--mono); font-size:12px; color:var(--muted); font-weight:500;">Your results will be sent to geraldine.lim@talentincubator.net.</span>
+      <span style="font-family:var(--mono); font-size:12px; color:var(--muted-dark); font-weight:500;">Your results will be sent to geraldine.lim@talentincubator.net.</span>
     </div>
   </div>
 
@@ -340,6 +345,7 @@
         <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
         <div class="progress-label" id="progress-label">1 / 24</div>
       </div>
+      <div class="mobile-tip">💡 Turn your phone horizontally for a side-by-side view.</div>
       <p class="prompt" id="prompt-text">—</p>
       <div class="choice-scale" id="choice-scale"></div>
       <div class="nav-row">
@@ -355,7 +361,7 @@
     <div class="card" id="export-card">
       <div class="result-head">
         <div>
-          <div style="font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;" id="result-for">Primary Style</div>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--muted-dark); text-transform:uppercase; letter-spacing:.1em; font-weight:600;" id="result-for">Primary Social Style</div>
           <div class="style-name" id="result-style">—</div>
           <p class="style-desc" id="result-desc">—</p>
         </div>
@@ -396,13 +402,13 @@ const ITEMS = [
   { axis: "assert", a: "My tone in meetings is exploratory.", b: "My tone in meetings is direct." },
   { axis: "respon", a: "My expressions stay fairly reserved.", b: "My expressions are animated and visible." },
   { axis: "assert", a: "I let others take the lead.", b: "I naturally take the lead." },
-  { axis: "respon", a: "I decide mainly on logic and data.", b: "I decide on logic and feelings." },
+  { axis: "respon", a: "I decide based on facts and data.", b: "I decide based on how people will feel." },
   { axis: "assert", a: "I phrase opinions as questions.", b: "I phrase opinions as statements." },
   { axis: "respon", a: "I keep meetings strictly on-agenda.", b: "I allow some small talk in meetings." },
   { axis: "assert", a: "I build consensus slowly.", b: "I push for a fast decision." },
-  { axis: "respon", a: "I'm formal in how I communicate.", b: "I'm informal and spontaneous." },
+  { axis: "respon", a: "I focus primarily on the task.", b: "I focus primarily on the people involved." },
   { axis: "assert", a: "I speak at a measured pace.", b: "I speak with high energy and pace." },
-  { axis: "respon", a: "I prefer precise written communication.", b: "I prefer casual conversation." },
+  { axis: "respon", a: "I prefer formal communication.", b: "I prefer casual conversation." },
   { axis: "assert", a: "I raise disagreement gently.", b: "I state disagreement plainly." },
   { axis: "respon", a: "I rarely show excitement or frustration.", b: "I show excitement or frustration visibly." },
   { axis: "assert", a: "I drop a point if pushed back.", b: "I keep pressing until it's addressed." },
@@ -430,7 +436,7 @@ function downloadAndEmail(){
   html2canvas(cardEl, { scale: 2, useCORS: true, backgroundColor: '#FFFFFF' }).then(canvas => {
     const pngDataUrl = canvas.toDataURL('image/png');
     const safeName = respondentName.replace(/\s+/g, '-') || 'results';
-    const fileName = `${safeName}-Social-Style.png`;
+    const fileName = `${safeName}-Social-Styles.png`;
     
     const link = document.createElement('a');
     link.href = pngDataUrl;
@@ -440,7 +446,7 @@ function downloadAndEmail(){
     document.body.removeChild(link);
 
     const { styleName } = lastResult;
-    const subject = `Social Style Self-Assessment Results — ${respondentName}`;
+    const subject = `Social Styles Self-Assessment Results — ${respondentName}`;
     const body =
 `Name: ${respondentName}
 Email: ${respondentEmail}
@@ -616,7 +622,7 @@ function showResults(){
   else styleKey = 'analytical';
 
   const style = STYLES[styleKey];
-  document.getElementById('result-for').textContent = `Primary Style · ${respondentName}`;
+  document.getElementById('result-for').textContent = `Primary Social Style · ${respondentName}`;
   document.getElementById('result-style').textContent = style.name;
   document.getElementById('result-style').style.color = style.color;
   document.getElementById('result-desc').textContent = style.desc;
@@ -650,13 +656,13 @@ function drawCompass(assertScore, responScore, dotColor){
     <rect x="${pad}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--amiable)" opacity="0.15"/>
     <rect x="${pad+plotSize/2}" y="${pad+plotSize/2}" width="${plotSize/2}" height="${plotSize/2}" fill="var(--expressive)" opacity="0.15"/>
     
-    <line x1="${pad}" y1="${pad+plotSize/2}" x2="${size-pad}" y2="${pad+plotSize/2}" stroke="var(--muted)" stroke-width="1.5"/>
-    <line x1="${pad+plotSize/2}" y1="${pad}" x2="${pad+plotSize/2}" y2="${size-pad}" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="${pad}" y1="${pad+plotSize/2}" x2="${size-pad}" y2="${pad+plotSize/2}" stroke="var(--muted-dark)" stroke-width="1.5"/>
+    <line x1="${pad+plotSize/2}" y1="${pad}" x2="${pad+plotSize/2}" y2="${size-pad}" stroke="var(--muted-dark)" stroke-width="1.5"/>
     
-    <text x="${pad+8}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">ASK</text>
-    <text x="${size-pad-36}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">TELL</text>
-    <text x="${pad+plotSize/2+8}" y="${pad+16}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">CONTROL</text>
-    <text x="${pad+plotSize/2+8}" y="${size-pad-8}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted)">EMOTE</text>
+    <text x="${pad+8}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted-dark)">ASK</text>
+    <text x="${size-pad-36}" y="${pad+plotSize/2-10}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted-dark)">TELL</text>
+    <text x="${pad+plotSize/2+8}" y="${pad+16}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted-dark)">CONTROL</text>
+    <text x="${pad+plotSize/2+8}" y="${size-pad-8}" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="var(--muted-dark)">EMOTE</text>
     
     <!-- Quadrant Labels -->
     <text x="${pad + plotSize/4}" y="${pad + plotSize/4}" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="var(--analytical)" text-anchor="middle" opacity="0.85">Analytical</text>
